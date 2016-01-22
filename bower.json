@@ -1,0 +1,25 @@
+{
+  "name": "backuppc",
+  "authors": [
+    "Tim Schumacher <tim@datenknoten.me>"
+  ],
+  "description": "A alternative BackupPC interface",
+  "main": "index.html",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "backup",
+    "backuppc"
+  ],
+  "license": "MIT",
+  "homepage": "https://datenknoten.me/",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
