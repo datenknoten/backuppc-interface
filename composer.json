@@ -1,0 +1,13 @@
+{
+    "name": "datenknoten/backuppc",
+    "description": "A modern web interface for backuppc",
+    "require": {
+        "react/socket-client": "dev-master"
+    },
+    "authors": [
+        {
+            "name": "Tim Schumacher",
+            "email": "tim@datenknoten.me"
+        }
+    ]
+}
