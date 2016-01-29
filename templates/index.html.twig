@@ -1,0 +1,119 @@
+<html>
+  <head>
+    <title>BackupPC interface</title>
+    <link rel="stylesheet" href="/bower_components/semantic/dist/semantic.css">
+    <link rel="stylesheet" href="/bower_components/ng-prettyjson/dist/ng-prettyjson.min.css">
+  </head>
+  <body ng-app="BackupApp">
+    <nav
+       class="ui sidebar inverted vertical menu"
+       ng-controller="NavigationController">
+       <li
+          class="active blue link item"
+          ng-click="setActiveElement('')"
+          >
+         BackupPC Interface
+       </li>
+      <li
+         class="link item"
+         ng-repeat="(name,obj) in (DataService.data.hosts)"
+         ng-bind="name"
+         ng-class="{active: DataService.active_element == name, teal: DataService.active_element == name}"
+         ng-click="setActiveElement(name);">
+        Name
+      </li>
+    </nav>
+    <main
+       class="pusher"
+       ng-controller="BackupController">
+       <header class="ui basic segment">
+         <div class="ui blue menu">
+           <div id="show_sidebar" class="link item">
+             <i class="sidebar icon"></i>
+           </div>
+           <div class="link item" ng-click="setActiveElement('');">
+             Hosts
+           </div>
+         </div>
+       </header>     
+       <div class="ui basic segment" ng-if="DataService.active_element == ''">
+         <h1
+            class="ui blue dividing header"
+            >Overview
+         </h1>
+         <table
+            class="ui selectable small compact table"
+            ng-if="DataService.active_element == ''"
+            >
+           <col width="40%">
+             <col width="20%">
+               <thead>
+                 <tr>
+                   <th>Name</th>
+                   <th>Status</th>
+                   <th>Type</th>
+                   <th>Last good Backup</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr ng-repeat="(name,obj) in (DataService.data.hosts)">
+                   <td ng-bind="name" ng-click="setActiveElement(name);"></td>
+                   <td ng-bind="obj.state"></td>
+                   <td ng-bind="obj.type"></td>
+                   <td ng-bind="obj.lastGoodBackupTime | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'"></td>
+                 </tr>
+               </tbody>        
+         </table>
+       </div>
+       <div class="ui basic segment" ng-if="DataService.active_element != ''">
+         <h1
+            class="ui blue dividing header"
+            ng-if="DataService.active_element != ''"
+            >
+            Host Summary for <span ng-bind="DataService.active_element"></span>
+         </h1>
+         <table class="ui definition table">
+           <tr>
+             <td>
+               Status
+             </td>
+             <td ng-bind="DataService.data.hosts[DataService.active_element].state">
+               
+             </td>
+           </tr>
+         </table>
+         <h2 class="ui blue dividing header">Backup Summary</h2>
+         <table
+            class="ui small compact celled fixed table"
+            ng-if="DataService.active_element != ''"
+            >
+           <thead>
+             <tr>
+               <th>Type</th>
+               <th>Size</th>
+               <th>Files</th>
+               <th>Start</th>
+               <th>End</th>
+             </tr>
+           </thead>
+           <tbody>
+             <tr ng-repeat="job in (DataService.data.hosts[DataService.active_element].jobs)">
+               <td ng-bind="job.type"></td>
+               <td ng-bind="job.size | bytes"></td>
+               <td ng-bind="job.nFiles"></td>
+               <td ng-bind="job.startTime | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'"></td>
+               <td ng-bind="job.endTime | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'"></td>
+             </tr>
+           </tbody>
+         </table>
+       </div>
+    </main>
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/semantic/dist/semantic.js"></script>
+    <script src="/bower_components/ng-prettyjson/dist/ng-prettyjson.min.js"></script>
+    <script src="/bower_components/moment/moment.js"></script>
+    <script src="/bower_components/angular-moment/angular-moment.js"></script>
+    <script src="/js/app.js"></script>
+  </body>
+</html>

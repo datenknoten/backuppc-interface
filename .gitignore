@@ -1,1 +1,4 @@
 vendor
+bower_components
+config.php
+logs/app.log

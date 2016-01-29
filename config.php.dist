@@ -1,0 +1,7 @@
+<?php
+
+$config = [
+    'host' => '',
+    'port' => 0,
+    'secret' => '',
+];
