@@ -60,6 +60,13 @@ function BytesPerSecondFilter() {
 	}
 }
 
+function StatusFilter() {
+    return function(status) {
+        var filtered = status.replace(/^Status_/,"").replace(/_/," ");
+        return filtered;
+    }
+}
+
 
 (function (angular) {
     'use strict';
@@ -69,6 +76,7 @@ function BytesPerSecondFilter() {
         .controller('NavigationController',['$scope','DataService',NavigationController])
         .filter('bytes',BytesFilter)
         .filter('bytesPerSeconds',BytesPerSecondFilter)
+        .filter('status',StatusFilter)
     ;
 })(window.angular);
 

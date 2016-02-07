@@ -58,7 +58,7 @@
                <tbody>
                  <tr ng-repeat="(name,obj) in (DataService.data.hosts)">
                    <td ng-bind="name" ng-click="setActiveElement(name);"></td>
-                   <td ng-bind="obj.state"></td>
+                   <td ng-bind="obj.state | status"></td>
                    <td ng-bind="obj.type"></td>
                    <td ng-bind="obj.lastGoodBackupTime | amFromUnix | amDateFormat:'YYYY-MM-DD HH:mm:ss'"></td>
                  </tr>
@@ -77,7 +77,7 @@
              <td>
                Status
              </td>
-             <td ng-bind="DataService.data.hosts[DataService.active_element].state">
+             <td ng-bind="DataService.data.hosts[DataService.active_element].state|status">
                
              </td>
            </tr>
