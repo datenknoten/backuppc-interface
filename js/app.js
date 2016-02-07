@@ -87,6 +87,8 @@ $(document).ready(function(){
         .sidebar()
     ;
 
+    $('table.sortable').tablesort().data('tablesort').sort($("th.default-sort"),'desc');
+
     $('#show_sidebar').click(function(){
         $('.ui.sidebar')
             .sidebar('toggle')
