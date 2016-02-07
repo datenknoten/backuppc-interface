@@ -56,7 +56,7 @@
                  </tr>
                </thead>
                <tbody>
-                 <tr ng-repeat="(name,obj) in (DataService.data.hosts)">
+                 <tr ng-repeat="(name,obj) in (DataService.data.hosts)" ng-class="{error: obj.state != 'Status_idle'}">
                    <td ng-bind="name" ng-click="setActiveElement(name);"></td>
                    <td ng-bind="obj.state | status"></td>
                    <td ng-bind="obj.type"></td>
